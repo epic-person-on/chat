@@ -200,7 +200,5 @@ window.addEventListener('beforeunload', () => {
 db.collection('users').onSnapshot(() => {
     displayOnlineUsers();
 });
-</script>
-</body>
-</html>
+
 
