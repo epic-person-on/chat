@@ -19,6 +19,7 @@ function setUsername() {
             return;
         }
         localStorage.setItem('username', username);
+        
     }
     return username;
 }
