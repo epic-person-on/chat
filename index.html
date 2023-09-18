@@ -5,190 +5,175 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Chat Application</title>
     <style>
-        /* Global styles */
         body {
-            font-family: 'Helvetica Neue', sans-serif;
-            background-color: #1f1f1f;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            color: #fff;
         }
 
-        /* Chat container styles */
+        /* Chat container */
         .chat-container {
-            background-color: #2c2c2c;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            flex-grow: 1;
-            overflow: hidden;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            background-color: #333;
+            color: #fff;
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .online-users {
+            list-style: none;
+            padding: 0;
+        }
+
+        .online-user {
+            margin: 5px 0;
+        }
+
+        /* Chat styles */
+        .chat {
+            flex: 1;
             display: flex;
             flex-direction: column;
         }
 
-        /* Chat header styles */
         .chat-header {
-            background-color: #2196F3;
+            background-color: #333;
             color: #fff;
-            padding: 15px;
             text-align: center;
-        }
-
-        .chat-header h1 {
-            margin: 0;
-            font-size: 20px;
-        }
-
-        /* Chat messages styles */
-        .chat-messages {
-            overflow-y: scroll;
-            padding: 15px;
-            flex-grow: 1;
-            background-color: #1f1f1f;
-        }
-
-        .message-bubble {
-            margin-bottom: 10px;
             padding: 10px;
-            border-radius: 5px;
-            background-color: #3f3f3f;
-            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
-            max-width: 80%;
-            word-wrap: break-word;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
-
-        /* Updated styles for message content */
-        .message-content {
-            flex-grow: 1;
-        }
-
-        .message-content .message-username {
-            color: #2196F3;
-            margin-right: 5px;
-        }
-
-        .message-content .message-text {
-            color: #fff;
-            word-break: break-word;
-        }
-
-        /* Updated styles for delete button */
-        .delete-button {
-            background-color: #ff5252;
-            border: none;
-            color: #fff;
-            border-radius: 3px;
-            padding: 3px 5px;
-            cursor: pointer;
-            position: absolute;
-            top: 5px;
-            right: 5px;
-        }
-
-        /* Chat input styles */
-        .chat-input {
-            display: flex;
-            padding: 15px;
-            background-color: #1f1f1f;
-            border-top: 1px solid #444;
-            border-radius: 0 0 5px 5px;
-        }
-
-        input[type="text"] {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            outline: none;
-            font-size: 16px;
-            background-color: #3f3f3f;
-            color: #fff;
-        }
-
-        button {
-            background-color: #2196F3;
-            border: none;
-            color: #fff;
-            border-radius: 5px;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-left: 10px;
-        }
-
-        button:hover {
-            background-color: #0e74db;
-        }
-
-        /* File input styles */
-        input[type="file"] {
-            display: none;
-        }
-
-        .file-upload-label {
-            background-color: #2196F3;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        /* Clear Storage button styles */
-        .clear-storage-button {
-            background-color: #ff5252;
-            border: none;
-            color: #fff;
-            border-radius: 5px;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-            align-self: center;
-        }
-
-        /* Offline page styles */
-        .offline-page {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            background-color: #2c2c2c;
-            color: #fff;
             font-size: 24px;
             font-weight: bold;
         }
 
-        .offline-page.show {
-            display: flex;
+        .chat-messages {
+            flex: 1;
+            overflow-y: scroll;
+            padding: 20px;
+        }
+
+        .message-bubble {
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            max-width: 70%;
+            align-self: flex-start;
+            position: relative;
+        }
+
+        .message-username {
+            font-weight: bold;
+        }
+
+        .delete-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #ff5050;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .file-upload-label {
+            cursor: pointer;
+            background-color: #4285f4;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        /* Offline page */
+        .offline-page {
+            display: none;
+            background-color: #ff5050;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .show {
+            display: block;
+        }
+
+        /* Dark mode */
+        .dark-mode {
+            background-color: #222;
+            color: #fff;
+        }
+
+        /* Media link styles */
+        .media-link {
+            color: #4285f4;
+            text-decoration: underline;
+        }
+
+        /* Clear storage button */
+        .clear-storage-button {
+            background-color: #4285f4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 10px;
+            align-self: flex-end;
         }
     </style>
 </head>
 <body>
     <div class="chat-container">
-        <div class="chat-header">
-            <h1>Modern Chat</h1>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2 class="sidebar-title">Online Users</h2>
+            <ul class="online-users" id="online-users">
+                <!-- Online users will be displayed here -->
+            </ul>
         </div>
-        <div class="chat-messages" id="chat-messages">
-            <!-- Chat messages will be displayed here -->
-        </div>
-        <div class="chat-input">
-            <input type="text" id="message-input" placeholder="Type your message...">
-            <label for="file-upload" class="file-upload-label">Upload File</label>
-            <input type="file" id="file-upload">
-            <button id="send-button">Send</button>
+
+        <!-- Chat -->
+        <div class="chat">
+            <div class="chat-header dark-mode">
+                <h1>Modern Chat</h1>
+            </div>
+
+            <!-- Chat messages -->
+            <div class="chat-messages dark-mode" id="chat-messages">
+                <!-- Chat messages will be displayed here -->
+            </div>
+
+            <!-- Chat input -->
+            <div class="chat-input dark-mode">
+                <input type="text" id="message-input" placeholder="Type your message...">
+                <label for="file-upload" class="file-upload-label">Upload File</label>
+                <input type="file" id="file-upload">
+                <button id="send-button">Send</button>
+            </div>
         </div>
     </div>
 
+    <!-- Clear storage button -->
     <button class="clear-storage-button" id="clear-storage-button">Clear Storage</button>
 
+    <!-- Offline page -->
     <div class="offline-page" id="offline-page">
         You are currently offline. Please check your internet connection.
     </div>
@@ -196,6 +181,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-storage.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js">
+        
+    </script>
 </body>
 </html>
