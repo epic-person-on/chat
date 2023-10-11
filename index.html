@@ -9,11 +9,13 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #222;
         }
 
         /* Chat container */
         .chat-container {
             display: flex;
+            flex-direction: column;
             height: 100vh;
         }
 
@@ -48,6 +50,10 @@
             flex: 1;
             display: flex;
             flex-direction: column;
+            background-color: #fff;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+            overflow: hidden;
         }
 
         .chat-header {
@@ -61,7 +67,7 @@
 
         .chat-messages {
             flex: 1;
-            overflow-y: scroll;
+            overflow-y: auto;
             padding: 20px;
         }
 
@@ -101,19 +107,6 @@
             margin-right: 10px;
         }
 
-        /* Offline page */
-        .offline-page {
-            display: none;
-            background-color: #ff5050;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-        }
-
-        .show {
-            display: block;
-        }
-
         /* Dark mode */
         .dark-mode {
             background-color: #222;
@@ -136,6 +129,19 @@
             cursor: pointer;
             margin: 10px;
             align-self: flex-end;
+        }
+
+        /* Offline page */
+        .offline-page {
+            display: none;
+            background-color: #ff5050;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .show {
+            display: block;
         }
     </style>
 </head>
