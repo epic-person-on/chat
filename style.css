@@ -188,4 +188,36 @@ a:hover {
 .file-upload-label::after {
     content: "Upload File";
 }
+/* Style individual chat messages with black text */
+.chat-message {
+    background-color: #444;
+    color: #000; /* Change text color to black */
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    max-width: 70%;
+    align-self: flex-start;
+    position: relative;
+}
+
+/* Style user's chat messages */
+.chat-message.sent {
+    background-color: #009688;
+    color: #fff;
+    align-self: flex-end;
+}
+
+/* Style the delete button to make it more square */
+.delete-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #ff5050;
+    color: #fff;
+    border: none;
+    border-radius: 50%; /* Make it more square */
+    padding: 8px; /* Adjust padding for a square button */
+    cursor: pointer;
+}
+
 
