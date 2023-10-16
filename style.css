@@ -18,7 +18,7 @@ body {
     max-width: 1000px; /* Adjust the maximum width for a full-size website */
     margin: 0 auto; /* Center the chat container */
     display: flex;
-    height: 600px
+    height: 500px
 }
 
 /* Style the sidebar */
