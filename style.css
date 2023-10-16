@@ -15,7 +15,7 @@ body {
 
 /* Style the chat container */
 .chat-container {
-    max-width: 1000px; /* Adjust the maximum width for a full-size website */
+    max-width: 1500px; /* Adjust the maximum width for a full-size website */
     margin: 0 auto; /* Center the chat container */
     display: flex;
     height: 500px
