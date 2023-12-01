@@ -45,7 +45,21 @@ function updateOnlineStatus() {
 
 window.addEventListener('online', updateOnlineStatus);
 window.addEventListener('offline', updateOnlineStatus);
-
+sendButton.onkeyup = function(e){
+    if(e.keyCode == 13){
+        if (message !== '') {
+            // Add the message to Firestore
+            db.collection('chat-messages').add({
+                text: message,
+                username: username,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            });
+    
+            // Clear the input field
+            messageInput.value = '';
+        }
+    }
+}
 // Event listener for sending a message
 sendButton.addEventListener('click', () => {
     const message = messageInput.value.trim();
